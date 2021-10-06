@@ -1,3 +1,4 @@
+import { format, parseISO } from 'date-fns'
 import { useState, useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
 import ListGroup from "react-bootstrap/ListGroup";
@@ -50,7 +51,7 @@ const MovieDetails = ({ match }) => {
 
       if (response.ok) {
         setMovieComment(data);
-        console.log(data);
+        // console.log(data);
       } else {
         console.log("Movei comments Err Fetch");
       }
@@ -61,6 +62,7 @@ const MovieDetails = ({ match }) => {
   };
 
   useEffect(() => {
+
     fetchMovieComments();
 
     fetchMovie();
@@ -97,7 +99,7 @@ const MovieDetails = ({ match }) => {
             <Col className="col-6 col-md-4 px-1 py-3">
               <ListGroup className="text-dark" >
                 <ListGroup.Item>{movie.comment}</ListGroup.Item>
-                <ListGroup.Item>{movie.createdAt}</ListGroup.Item>
+                <ListGroup.Item>{format(parseISO(movie.createdAt), 'MMMM do yyyy | HH:mm')}</ListGroup.Item>
                 <ListGroup.Item>{movie.rate}</ListGroup.Item>
               </ListGroup>
             </Col>
