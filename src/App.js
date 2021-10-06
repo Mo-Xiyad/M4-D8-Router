@@ -13,6 +13,8 @@ import { useState } from "react";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import MovieDetails from "./components/MovieDetails";
+import Tvsohows from "./components/Tvsohows";
+import Home from "./components/Home";
 
 const App = () => {
   const [query, setQuery] = useState("");
@@ -21,6 +23,8 @@ const App = () => {
     <div className="App">
       <Router>
         <Navbarr value={query} onChange={(e) => setQuery(e.target.value)} />
+        <Route path="/home" component={Home} />
+        <Route path="/tvsohows" exact component={Tvsohows} />
         <Route
           path="/movies"
           exact
@@ -39,7 +43,7 @@ const App = () => {
           }}
         />
 
-      <Route path="/movieDetails/:movieId" component={MovieDetails}/>
+        <Route path="/movieDetails/:movieId" component={MovieDetails} />
 
         {query.length > 3 && <Search query={query} />}
         <MyFooter />
