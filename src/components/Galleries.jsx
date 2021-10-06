@@ -1,6 +1,7 @@
 import { Component } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import {Link} from 'react-router-dom'
 
 
 class Galleries extends Component {
@@ -52,12 +53,11 @@ class Galleries extends Component {
         <div className="d-flex justify-content-start">
           <Row className="">
             {this.state.movies.movies.map((m) => (
-              <Col className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-2 px-1 py-3">
-                <div
-                  Key={m.imdbID}
-                  className="card-gallery card-text-area position-relative"
-                >
-                  <img class="img-fluid rounded" src={m.Poster} alt="" />
+              <Col key={m.imdbID} className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-2 px-1 py-3">
+                <div className="card-gallery card-text-area position-relative">
+                  <Link to={'/movieDetails/' + m.imdbID}>
+                  <img class="img-fluid rounded" src={m.Poster} alt=""/>
+                  </Link>
                   <div class="infos-container">
                     <div class="infos-content">
                       <div class="d-flex align-items-center mb-3">

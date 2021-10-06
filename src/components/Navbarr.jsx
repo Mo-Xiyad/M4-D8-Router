@@ -1,7 +1,7 @@
 import React from "react";
-import Galleries from "./Galleries";
+import {withRouter, Link} from "react-router-dom";
 import netflix_Logo_RGB from '../assets/netflix_Logo_RGB.png' ;
-import { Component } from "react";
+
 import {
   Container,
   Nav,
@@ -14,10 +14,10 @@ import {
 
 
 
-class Navbarr extends Component {
+const Navbarr = ({onChange, value,  history, location, match}) => {
 
 
-  render() {
+
     return (
       <>
         <Navbar bg="" variant="dark" expand="lg">
@@ -46,8 +46,12 @@ class Navbarr extends Component {
                     Something else here
                   </NavDropdown.Item>
                 </NavDropdown>
-                <Nav.Link href="#action2">TV Shows</Nav.Link>
-                <Nav.Link href="#action3">Movies</Nav.Link>
+
+                <Link to={"/movies"}>
+                <div className={ location.pathname === '/movies' ? 'nav-link active' : 'nav-link'}>Movies</div>
+                </Link>
+
+                <Nav.Link href="#action3">TV Shows</Nav.Link>
                 <Nav.Link href="#action4">Recently Added</Nav.Link>
                 <Nav.Link href="#action5">My List</Nav.Link>
               </Nav>
@@ -56,8 +60,8 @@ class Navbarr extends Component {
               {/* search bar is below */}
               <Form.Group controlId="exampleForm.ControlInput1" className="mr-2 mt-1">
                 <Form.Control type="text" placeholder="Search"
-                  value={this.props.value}
-                  onChange={(e) => this.props.onChange(e)}
+                  value={value}
+                  onChange={(e) => onChange(e)}
                 />
               </Form.Group>
 
@@ -88,6 +92,5 @@ class Navbarr extends Component {
 
       </>
     );
-  }
 }
-export default Navbarr;
+export default withRouter(Navbarr);
